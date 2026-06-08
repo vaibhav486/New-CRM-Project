@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personal CRM</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CRM</div>
+          <div>
+            <h1>Personal CRM</h1>
+            <p>Relationship workspace</p>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-button active" data-view="dashboard">Dashboard</button>
+          <button class="nav-button" data-view="contacts">Contacts</button>
+          <button class="nav-button" data-view="interactions">Interactions</button>
+          <button class="nav-button" data-view="tasks">Tasks</button>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Weekly review</p>
+            <h2 id="view-title">Dashboard</h2>
+          </div>
+          <div class="topbar-actions">
+            <button class="button secondary" id="refresh-button">Refresh</button>
+            <button class="button primary" id="quick-add-button">Add contact</button>
+          </div>
+        </section>
+
+        <section class="view active" id="dashboard-view">
+          <div class="metric-grid" id="metrics"></div>
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Due follow-ups</h3>
+                <span id="due-count" class="pill"></span>
+              </div>
+              <div id="due-tasks" class="list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Stale contacts</h3>
+                <span class="pill">30+ days</span>
+              </div>
+              <div id="stale-contacts" class="list"></div>
+            </section>
+            <section class="panel wide">
+              <div class="panel-header">
+                <h3>Recent interactions</h3>
+                <span class="pill">Latest first</span>
+              </div>
+              <div id="recent-interactions" class="activity"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Relationship mix</h3>
+                <span class="pill">Contacts</span>
+              </div>
+              <div id="relationship-mix" class="bar-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="contacts-view">
+          <div class="split-layout">
+            <form class="panel form-panel" id="contact-form">
+              <input type="hidden" name="id">
+              <h3 id="contact-form-title">Add contact</h3>
+              <label>Name<input name="name" required autocomplete="name"></label>
+              <div class="two-column">
+                <label>Email<input name="email" type="email" autocomplete="email"></label>
+                <label>Phone<input name="phone" autocomplete="tel"></label>
+              </div>
+              <div class="two-column">
+                <label>Relationship
+                  <select name="relationship_type">
+                    <option>friend</option>
+                    <option>colleague</option>
+                    <option>client</option>
+                    <option>mentor</option>
+                    <option>prospect</option>
+                    <option>family</option>
+                  </select>
+                </label>
+                <label>Source<input name="source" placeholder="Where you met"></label>
+              </div>
+              <label>Tags<input name="tags" placeholder="comma, separated, tags"></label>
+              <label>Notes<textarea name="notes" rows="4"></textarea></label>
+              <div class="form-actions">
+                <button class="button primary" type="submit">Save contact</button>
+                <button class="button secondary" type="button" id="reset-contact-form">Clear</button>
+              </div>
+            </form>
+            <section class="panel table-panel">
+              <div class="panel-header">
+                <h3>Contacts</h3>
+                <input class="search" id="contact-search" placeholder="Search contacts">
+              </div>
+              <div id="contacts-table" class="table"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="interactions-view">
+          <div class="split-layout">
+            <form class="panel form-panel" id="interaction-form">
+              <h3>Log interaction</h3>
+              <label>Contact<select name="contact_id" required></select></label>
+              <div class="two-column">
+                <label>Type
+                  <select name="type">
+                    <option>call</option>
+                    <option>email</option>
+                    <option>meeting</option>
+                    <option>message</option>
+                    <option>note</option>
+                  </select>
+                </label>
+                <label>Date<input name="occurred_on" type="date" required></label>
+              </div>
+              <label>Summary<textarea name="summary" rows="5" required></textarea></label>
+              <button class="button primary" type="submit">Add interaction</button>
+            </form>
+            <section class="panel table-panel">
+              <div class="panel-header">
+                <h3>Interaction history</h3>
+                <span class="pill">All contacts</span>
+              </div>
+              <div id="interactions-list" class="activity"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="tasks-view">
+          <div class="split-layout">
+            <form class="panel form-panel" id="task-form">
+              <h3>Create follow-up</h3>
+              <label>Contact<select name="contact_id" required></select></label>
+              <label>Task<input name="title" required placeholder="Send note, schedule call..."></label>
+              <label>Due date<input name="due_on" type="date" required></label>
+              <button class="button primary" type="submit">Add task</button>
+            </form>
+            <section class="panel table-panel">
+              <div class="panel-header">
+                <h3>Tasks</h3>
+                <span class="pill">Open first</span>
+              </div>
+              <div id="tasks-list" class="task-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
