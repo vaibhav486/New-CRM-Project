@@ -1,4 +1,4 @@
-git add .const state = {
+const state = {
   contacts: [],
   interactions: [],
   tasks: [],
