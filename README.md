@@ -40,8 +40,9 @@ The app creates `crm.db` automatically in this folder. Backing up the CRM is as 
 
 ## Screenshots
 
-- Dashboard (main): [screenshots/Dashboard.png](screenshots/Dashboard.png)
-- Dashboard (alt): [screenshots/dashboard (2).png](screenshots/dashboard (2).png)
+- Dashboard (main): [screenshots/dashboard1.png](screenshots/dashboard1.png)
+- Dashboard (alt): [screenshots/Dashboard2.png](screenshots/Dashboard2.png)
+
 - Contacts view: [screenshots/contact.png](screenshots/contact.png)
 - Interactions view: [screenshots/Interactions.png](screenshots/Interactions.png)
 - Tasks view: [screenshots/Tasks.png](screenshots/Tasks.png)
